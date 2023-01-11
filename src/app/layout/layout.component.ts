@@ -1,3 +1,5 @@
+import { ToastrService } from 'ngx-toastr';
+import { CustomToastrService } from './../services/custom-toastr.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private customToastrService: CustomToastrService,
+    private toastrService: ToastrService
+  ) { }
 
   ngOnInit() {
+  }
+
+  public onSuccess(): void {
+    this.customToastrService.successToastr('Success message!');
+  }
+
+  public onWarning(): void {
+    this.customToastrService.warningToastr('Caution! Warning message!');
+  }
+
+  public onError(): void {
+    this.customToastrService.errorToastr('Error! This is an error message!');
   }
 
 }
